@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi_CarSale
+Bundle-SymbolicName: OSGi_NavindaCarSale
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: osgi_carsale.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: OSGi.CarSale
+Import-Package: org.osgi.framework;version="1.3.0",
+ osgi_financecompany
+Bundle-ActivationPolicy: lazy

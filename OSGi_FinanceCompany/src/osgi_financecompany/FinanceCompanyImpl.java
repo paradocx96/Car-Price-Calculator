@@ -1,18 +1,15 @@
 package osgi_financecompany;
 
-import java.text.NumberFormat;
-
 public class FinanceCompanyImpl implements IFinanceCompany {
 
 	double lastPrice, downpayment;
 	int years;
-		
-	@Override
-	public String financeCompany() {
-		return "Connected to Finance Company.";
-	}
 	
-	public FinanceCompanyImpl() {}
+	public FinanceCompanyImpl() {
+		this.lastPrice = 0.0;
+		this.downpayment = 0.0;
+		this.years = 0;
+	}
 		
 	public FinanceCompanyImpl(double lastPrice, double downpayment, int years) {
 		super();
@@ -25,10 +22,15 @@ public class FinanceCompanyImpl implements IFinanceCompany {
 	public void CalculateInstallment() {
 		
 		double afterDownPaymentPrice = lastPrice - downpayment;
-		double installmentPrice = afterDownPaymentPrice / (12 * years);		
-		String price = String.format("%,.2f", installmentPrice);	
+		double installmentPrice = afterDownPaymentPrice / (12 * years);
 		
-		System.out.println("A instalment amount is Rs." + price + "\n");		
+		String vehiclePrice = String.format("%,.2f", lastPrice);
+		String downPayment = String.format("%,.2f", downpayment);
+		String price = String.format("%,.2f", installmentPrice);
+		
+		System.out.println("\nVehicle Price Rs." + vehiclePrice);
+		System.out.println("Down-Payment Rs." + downPayment);
+		System.out.println("Monthly installment(Without TAX/Rate) is Rs." + price + "\n");		
 	}
 	
 

@@ -6,24 +6,25 @@ import org.osgi.framework.ServiceRegistration;
 
 public class Activator implements BundleActivator {
 
-	ServiceRegistration financeServiceRegistration;
-	
+	// Create an object of ServiceRegistration for register and unregister the service
+	ServiceRegistration financeServiceRegistration;	
 
 	public void start(BundleContext context) throws Exception {
 		
-		System.out.println("FinanceCompany Start");
+		System.out.println("********** Start Finance Company Service **********");
 		
+		// Create an object of FinanceCompanyImpl to register the service 	
 		IFinanceCompany iFinanceCompany = new FinanceCompanyImpl();
 		
-		financeServiceRegistration = context.registerService(IFinanceCompany.class.getName(), iFinanceCompany, null);
-		
+		// Pass the parameters to BundleContext and registerService method called
+		financeServiceRegistration = context.registerService(IFinanceCompany.class.getName(), iFinanceCompany, null);		
 	}
 
 	public void stop(BundleContext context) throws Exception {
 		
-		System.out.println("FinanceCompany Stop");
-		financeServiceRegistration.unregister();
+		System.out.println("********** Stop Finance Company Service **********");
 		
+		// Unregistering the service
+		financeServiceRegistration.unregister();		
 	}
-
 }

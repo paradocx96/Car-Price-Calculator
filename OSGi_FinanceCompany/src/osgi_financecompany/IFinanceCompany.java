@@ -2,8 +2,7 @@ package osgi_financecompany;
 
 public interface IFinanceCompany {
 	
-	public String financeCompany();
-	
+	// Method for get details to calculate Monthly installment	
 	public void CalculateInstallment();
 	
 }

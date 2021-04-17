@@ -5,7 +5,8 @@ import java.util.Scanner;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import osgi_governmentcarservicepublisher.IGovernmentTax;
+
+import com.mtit.governmentcarservicepublisher.IGovernmentTax;
 
 public class Activator implements BundleActivator {
 

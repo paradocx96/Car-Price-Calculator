@@ -6,10 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.mtit.navindacarsale.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: OSGi.CarSale
-Import-Package: com.mtit.financecompany,
- com.mtit.governmentcarservicepublisher,
- com.mtit.hondapublisher,
+Import-Package: com.mtit.hondapublisher, 
  com.mtit.model,
- com.mtit.toyotapublisherService,
+ com.mtit.toyotapublisherService, 
+ com.mtit.governmentcarservicepublisher,
+ com.mtit.financecompany,
  org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy

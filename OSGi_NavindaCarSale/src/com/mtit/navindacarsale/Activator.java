@@ -15,14 +15,20 @@ import com.mtit.toyotapublisherService.ToyotaServicePublish;
 
 public class Activator implements BundleActivator {
 
-	ServiceReference serviceReference_FinanceCompany, serviceReference_GovernmentTax, toyotaServiceReference,
-			hondaServiceReference;
+	ServiceReference serviceReference_FinanceCompany, serviceReference_GovernmentTax, toyotaServiceReference, hondaServiceReference;
 	Scanner scanner = new Scanner(System.in);
+	private String checkEntrance = null;
 	private String checkService = null;
 	private String checkVal = null;
+	private String checkFinance = null;
 	private int service = 0;
 	private String userInputForRecheck = null;
 	private String userInputForGetTaxes = null;
+	private String checkBrand = null;
+	private String model = new String();
+	private int engineCapacity;
+	private double price;
+
 	private static final String STARS = "****************************************************\n";
 	private static final String LINE1 = "********** Welcome to Car Price Calculator ********\n";
 	private static final String LINE2 = "Choose a Service to help you\n";
@@ -34,6 +40,7 @@ public class Activator implements BundleActivator {
 	private static final String LINE8 = "********** Stop Navinda Car Sale Service ***********";
 	private static final String LINE9 = "********** Welcome to Government Tax Service *******\n";
 	private static final String LINE10 = "********** Welcome to Finance Company Service ******\n";
+	private static final String LINE11 = "********** Welcome to Manufacture Company Service **\n";
 	private static final String INVALID = "Invalid Input Please Try Again!";
 	private static final String ENTER_ENGINE_CAPACITY = "Enter Car Engine Capacity : ";
 	private static final String ENTER_ENGINE_CAPACITY2 = "Car Engine Capacity : ";
@@ -44,13 +51,9 @@ public class Activator implements BundleActivator {
 	private static final String CHECK_TAX1 = "Do you want to know about Tax Rates(y/n) ? ";
 	private static final String CHECK_TAX2 = "Do you want to check Tax Rates again (y/n) ? ";
 	private static final String CHECK_FINANCE = "Do you want to calcualte again (y/n)? ";
-	private static final String CHECK_MAIN = "\nDo you want to use any other service (y/n)? ";
+	private static final String CHECK_MAIN = "\nDo you want to use Application again (y/n)? ";
 	private static final String EXIT = "********** Exit from Application Services **********";
 
-	String j = "continue";
-	String model = new String();
-	int engineCapacity;
-	double price;
 
 	public void start(BundleContext context) throws Exception {
 
@@ -60,6 +63,16 @@ public class Activator implements BundleActivator {
 		 * Registering services
 		 */
 
+		// Registering car sale with Toyota Manufacture
+		toyotaServiceReference = context.getServiceReference(ToyotaServicePublish.class.getName());
+		ToyotaServicePublish toyotaServicePublish = (ToyotaServicePublish) context.getService(toyotaServiceReference);
+		toyotaServicePublish.publishService();
+
+		// Registering car sale with Honda Manufacture
+		hondaServiceReference = context.getServiceReference(HondaServicePublish.class.getName());
+		HondaServicePublish hondaServicePublish = (HondaServicePublish) context.getService(hondaServiceReference);
+		hondaServicePublish.publishService();
+
 		// Registering car sale with Government Tax service
 		serviceReference_GovernmentTax = context.getServiceReference(IGovernmentTax.class.getName());
 		IGovernmentTax govTaxrates = (IGovernmentTax) context.getService(serviceReference_GovernmentTax);
@@ -68,77 +81,48 @@ public class Activator implements BundleActivator {
 		serviceReference_FinanceCompany = context.getServiceReference(FinanceCompany.class.getName());
 		FinanceCompany financeCompany = (FinanceCompany) context.getService(serviceReference_FinanceCompany);
 
-		// Registering car sale with Toyota Manufacture
-		toyotaServiceReference = context.getServiceReference(ToyotaServicePublish.class.getName());
-		ToyotaServicePublish toyotaServicePublish = (ToyotaServicePublish) context.getService(toyotaServiceReference);
-		System.out.println("Manufacturer published: " + toyotaServicePublish.publishService());
-
-		// Registering car sale with Honda Manufacture
-		hondaServiceReference = context.getServiceReference(HondaServicePublish.class.getName());
-		HondaServicePublish hondaServicePublish = (HondaServicePublish) context.getService(hondaServiceReference);
-		System.out.println("Manufacturer published: " + hondaServicePublish.publishService());
-
 		/*
 		 * Start Navinda Car Sale Functions
 		 */
-		System.out.println(LINE1);
-		System.out.println(LINE2);
-		System.out.println(LINE3);
-		System.out.println(LINE4);
-		System.out.println(LINE5);
-		System.out.print(LINE6);
-		service = scanner.nextInt();
 
 		do {
+			/*
+			 * Calling Manufacturer company services
+			 */
 
-			if (service == 1) {
+			System.out.print("Do you want to process Application(yes/exit) ? ");
+			checkEntrance = scanner.next();
+			System.out.println();
 
-				/*
-				 * Calling Manufacturer company services
-				 */
-				// carSaleInterface();
-				System.out.println("Starting car sale (Subscriber) Service.");
-				System.out.println("Enter 'exit' to exit this interface.");
+			if (checkEntrance.equals("yes") || checkEntrance.equals("YES")) {
 
-				while (!j.equals("exit")) {
+				System.out.println(LINE11);
 
-					System.out.println("Enter car brand: ");
-					j = scanner.nextLine();
+				System.out.print("Enter car brand (honda/toyota) : ");
+				checkBrand = scanner.next();
 
-					if (j.equals("exit")) {
-						break;
-					} else {
-						if (j.toLowerCase().equals("toyota")) {
-							System.out.println("Enter the model");
-							model = scanner.nextLine();
-							engineCapacity = toyotaServicePublish.getEngineCapacity(model);
-							price = toyotaServicePublish.getPrice(model);
+				if (checkBrand.toLowerCase().equals("toyota")) {
 
-							if (engineCapacity == -1) {
-								continue;
-							}
-						} else if (j.toLowerCase().equals("honda")) {
-							System.out.println("Enter the model");
-							model = scanner.nextLine();
-							engineCapacity = hondaServicePublish.getEngineCapacity(model);
-							price = hondaServicePublish.getPrice(model);
+					System.out.print("Enter the model : ");
+					model = scanner.next();
+					engineCapacity = toyotaServicePublish.getEngineCapacity(model);
+					price = toyotaServicePublish.getPrice(model);
 
-							if (engineCapacity == -1) {
-								continue;
-							}
-						} else {
-							System.out.println("Sorry! The brand you entered is not currently supported.");
-							continue;
-						}
+				} else if (checkBrand.toLowerCase().equals("honda")) {
 
-						System.out.println(j + " " + model);
-						System.out.println("Engine Capacity: " + engineCapacity);
-						System.out.println("Manufacturer Price: " + price);
-					}
+					System.out.print("Enter the model : ");
+					model = scanner.next();
+					engineCapacity = hondaServicePublish.getEngineCapacity(model);
+					price = hondaServicePublish.getPrice(model);
 
+				} else {
+
+					System.out.println("Sorry! The brand you entered is not currently supported.");
 				}
 
-			} else if (service == 2) {
+				System.out.println(checkBrand + " " + model);
+				System.out.println("Engine Capacity: " + engineCapacity);
+				System.out.println("Manufacturer Price: " + price);
 
 				/*
 				 * Calling Finance Government Tax services
@@ -147,7 +131,7 @@ public class Activator implements BundleActivator {
 					System.out.println(STARS);
 					System.out.println(LINE9);
 
-					System.out.print(ENTER_ENGINE_CAPACITY2 + engineCapacity);
+					System.out.print(ENTER_ENGINE_CAPACITY2 + engineCapacity + "CC\n");
 					// int carEngineCC = scanner.nextInt();
 
 					System.out.print(ENTER_VAHICLE_PRICE2 + price);
@@ -174,48 +158,47 @@ public class Activator implements BundleActivator {
 
 				System.out.println(STARS);
 
-			} else if (service == 3) {
+				System.out.print("Do you need to check Finance support(y/n) ? ");
+				checkFinance = scanner.next();
+				System.out.println();
 
-				/*
-				 * Calling Finance company services
-				 */
-				do {
+				if (checkFinance.equals("y") || checkFinance.equals("Y")) {
+					/*
+					 * Calling Finance company services
+					 */
+					do {
+						System.out.println(STARS);
+						System.out.println(LINE10);
+
+						// Getting keyboard input to calculate Monthly installment
+						double carPrice = govTaxrates.getTotalPrice();
+						System.out.print(ENTER_VAHICLE_PRICE2 + carPrice);
+						// double carPrice = scanner.nextDouble();
+
+						System.out.print(ENTER_DOWN_PAYMENT);
+						double downPayment = scanner.nextDouble();
+
+						System.out.print(ENTER_YEARS);
+						int years = scanner.nextInt();
+
+						// Pass the value to Finance company as parameters
+						financeCompany.serviceInitialization(carPrice, downPayment, years);
+
+						// Calling Installment calculation method
+						financeCompany.CalculateInstallment();
+
+						System.out.println(STARS);
+
+						// Check user to do the calculation again
+						System.out.print(CHECK_FINANCE);
+						checkVal = scanner.next();
+						System.out.println();
+
+					} while (checkVal.equals("y") || checkVal.equals("Y"));
+
 					System.out.println(STARS);
-					System.out.println(LINE10);
+				}
 
-					// Getting keyboard input to calculate Monthly installment
-					double carPrice = govTaxrates.getTotalPrice();
-					System.out.print(ENTER_VAHICLE_PRICE2 + carPrice);
-					// double carPrice = scanner.nextDouble();
-
-					System.out.print(ENTER_DOWN_PAYMENT);
-					double downPayment = scanner.nextDouble();
-
-					System.out.print(ENTER_YEARS);
-					int years = scanner.nextInt();
-
-					// Pass the value to Finance company as parameters
-					financeCompany.serviceInitialization(carPrice, downPayment, years);
-
-					// Calling Installment calculation method
-					financeCompany.CalculateInstallment();
-
-					System.out.println(STARS);
-
-					// Check user to do the calculation again
-					System.out.print(CHECK_FINANCE);
-					checkVal = scanner.next();
-					System.out.println();
-
-				} while (checkVal.equals("y") || checkVal.equals("Y"));
-
-				System.out.println(STARS);
-
-			} else {
-
-				System.out.println(STARS);
-				System.out.println(INVALID);
-				System.out.println(STARS);
 			}
 
 			// Check user want to do the calculation again
@@ -223,21 +206,11 @@ public class Activator implements BundleActivator {
 			checkService = scanner.next();
 			System.out.println();
 
-			if (checkService.equals("y") || checkService.equals("Y")) {
-
-				System.out.println(LINE1);
-				System.out.println(LINE2);
-				System.out.println(LINE3);
-				System.out.println(LINE4);
-				System.out.println(LINE5);
-				System.out.print(LINE6);
-				service = scanner.nextInt();
-			}
-
 		} while (checkService.equals("y") || checkService.equals("Y"));
 
 		System.out.println(EXIT);
 		System.out.println(STARS);
+
 	}
 
 	// Method Stop Car sale service

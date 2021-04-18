@@ -1,3 +1,6 @@
+// IT19180526 
+// Chandrasiri S. A. N. L. D.
+
 package com.mtit.financecompany;
 
 import com.mtit.InstallmentModel.Installment;
@@ -21,12 +24,8 @@ public class FinanceCompanyImpl implements FinanceCompany {
 		String downPayment = String.format("%,.2f", installment.getDownpayment());
 		String price = String.format("%,.2f", installmentPrice);
 		
-		System.out.println("\nVehicle Price Rs." + vehiclePrice);
-		System.out.println("Down-Payment Rs." + downPayment);
-		System.out.println("Monthly installment(Without TAX/Rate) is Rs." + price + "\n");		
+		System.out.println("\nCar Price : Rs." + vehiclePrice);
+		System.out.println("Down-Payment : Rs." + downPayment);
+		System.out.println("Monthly installment(without TAX/Rates) : Rs." + price + "\n");		
 	}
-
-	
-	
-
 }

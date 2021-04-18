@@ -6,7 +6,10 @@ package com.mtit.toyotapublisherService;
 public interface ToyotaServicePublish {
 
 	public String publishService();
+	
 	public void ServiceInitiator();
+	
 	public int getEngineCapacity(String model);
+	
 	public double getPrice(String model);
 }

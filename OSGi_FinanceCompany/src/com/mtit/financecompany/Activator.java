@@ -1,3 +1,6 @@
+// IT19180526 
+// Chandrasiri S. A. N. L. D.
+
 package com.mtit.financecompany;
 
 import org.osgi.framework.BundleActivator;
@@ -11,7 +14,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		
-		System.out.println("********** Start Finance Company Service **********");
+		System.out.println("********** Start Finance Company Publisher");
 		
 		// Create an object of FinanceCompanyImpl to register the service 	
 		FinanceCompany iFinanceCompany = new FinanceCompanyImpl();
@@ -22,7 +25,7 @@ public class Activator implements BundleActivator {
 
 	public void stop(BundleContext context) throws Exception {
 		
-		System.out.println("********** Stop Finance Company Service **********");
+		System.out.println("********** Stop Finance Company Service");
 		
 		// Unregistering the service
 		financeServiceRegistration.unregister();		

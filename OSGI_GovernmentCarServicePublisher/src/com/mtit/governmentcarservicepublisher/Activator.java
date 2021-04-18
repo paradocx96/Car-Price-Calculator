@@ -1,5 +1,7 @@
-//IT19240848 - Malwatta H.G.
-//Batch - WE
+// IT19240848 
+// Malwatta H.G.
+// Batch - WE
+
 package com.mtit.governmentcarservicepublisher;
 
 import org.osgi.framework.BundleActivator;
@@ -14,7 +16,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext bundleContext) throws Exception {
 
-		System.out.println("------ Start Government Tax Service ------");
+		System.out.println("********** Start Government Tax Publisher");
 		// Create GovernmentTaxImpl object to register the tax service
 		IGovernmentTax iGovernmentTaxService = new GovernmentTaxImpl();
 
@@ -29,7 +31,7 @@ public class Activator implements BundleActivator {
 
 	public void stop(BundleContext bundleContext) throws Exception {
 
-		System.out.println("------ Stop Government Tax Service ------");
+		System.out.println("********** Stop Government Tax Service");
 
 		// Whenever want to unregister the Government Tax service
 		govServiceRegistration.unregister();

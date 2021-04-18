@@ -12,14 +12,14 @@ public class Activator implements BundleActivator {
 	ServiceRegistration serviceRegistration;
 
 	public void start(BundleContext context) throws Exception {
-		System.out.println("Starting manufacturer-honda publisher");
+		System.out.println("********** Start Manufacturer-Honda Publisher");
 		HondaServicePublish hondaServicePublish = new HondaServicePublishImpl();
 		serviceRegistration = context.registerService(HondaServicePublish.class.getName(), hondaServicePublish, null);
 		
 	}
 
 	public void stop(BundleContext context) throws Exception {
-		System.out.println("Stopping honda service");
+		System.out.println("********** Stop Manufacturer-Honda Service");
 		serviceRegistration.unregister();
 	}
 

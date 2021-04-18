@@ -12,8 +12,8 @@
  git remote add origin https://github.com/paradocx96/Car-Price-Calculator.git  
  git push -u origin StudentName  
  
- ### > Second Time  
+ ### > After Time  
  git add .  
- git commit -m "Initial commit"  
+ git commit -m "After commit"  
  git branch -M StudentName  
  git push -u origin StudentName  

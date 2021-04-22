@@ -1,6 +1,20 @@
 ﻿# Car-Price-Calculator
  
- ## SA Assignment 1 (OSGi)
+ ## Software Architecture Assignment 1 (OSGi)
+ 
+ ## Introduction
+ 
+ The scenario will be implemented using the OSGI framework as an Eclipse Equinox plugin project. This collection of bundles implements a scenario of a car purchasing system. The Car Sale will be the consumer which the user can interact with. The car manufacturers (ToyotaPublisherService and HondaPublisherService), Government, FincanceCompany will be the producers of this scenario. The manufacturer services will publish the details of the car models available within each of them. Once a model is supplied, for valid models, the Manufacturer Services will return the price and the engine capacity. The government service will announce the tax and the tax rate once the manufacturer price and the engine capacity of a vehicle is given.
+The car sale will get the manufacturer price and the engine capacity form a manufacturer servce and supply them to the government to get the tax and the tax rate. The Car sale will calculate the final price after the tax and (Car sale’s) profit margin is added. Then the car sale will consume the Finance company service to calculate the installments once the down payment is given.
+
+![High level architecture diagram of the system](https://github.com/paradocx96/Car-Price-Calculator/blob/main/Diagram/Diagram.jpg "High level architecture diagram of the system")
+
+ ## Group Members
+ 
+ 1. A.M.W.W.R.L. Wataketiya (IT19014128)
+ 2. S.A.N.L.D. Chandrasiri 
+ 3. H.G. Malwatta (IT19240848)
+ 4. I.H.A.H.Karunathilaka (IT19238722)
  
  ## Git Guide 
  ### > First Time

@@ -9,14 +9,19 @@ The car sale will get the manufacturer price and the engine capacity form a manu
 
 ![High level architecture diagram of the system](https://github.com/paradocx96/Car-Price-Calculator/blob/main/Diagram/Diagram.jpg "High level architecture diagram of the system")
 
- ## Group Members
- 
- 1. A.M.W.W.R.L. Wataketiya (IT19014128)
- 2. S.A.N.L.D. Chandrasiri 
- 3. H.G. Malwatta (IT19240848)
- 4. I.H.A.H.Karunathilaka (IT19238722)
- 
- ## Git Guide 
+## Group Members  
+
+| Student ID | Student Name            | Github Username       |
+|------------|-------------------------|-----------------------|
+| IT19014128 | A.M.W.W.R.L. Wataketiya | RavinduLa             |
+| IT19180526 | S.A.N.L.D. Chandrasiri  | paradocx96            |
+| IT19240848 | H.G. Malwatta           | DeclanChirush         |
+| IT19238722 | I.H.A.H. Karunathilaka  | AmarangiKarunathilaka |  
+
+ ## Git Guide  
+<details> 
+  <summary>💻</summary>
+  
  ### > First Time
  git init  
  git checkout -b StudentName  
@@ -31,3 +36,4 @@ The car sale will get the manufacturer price and the engine capacity form a manu
  git commit -m "After commit"  
  git branch -M StudentName  
  git push -u origin StudentName  
+</details> 
